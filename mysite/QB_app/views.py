@@ -15,6 +15,7 @@ def aws_connect():
 	return conn
 
 # home endpoint
-def home(request):
-	return render_to_response('home.html', request)
+def home():
+	return render_to_response('home.html')
+
 
