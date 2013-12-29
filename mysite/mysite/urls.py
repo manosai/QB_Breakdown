@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 	url(r'^$', 'QB_app.views.home'),
-	url(r'^get_qb_breakdown/', 'QB_Breakdown_app.views.get_qb_data'),
+	url(r'^get_qb_breakdown/', 'QB_app.views.get_qb_breakdown'),
 )

@@ -24,25 +24,30 @@
 <input type="text" name="qb_name"><br>
 <input type="button" name="loadGraph" value="Load" onClick="loadGraph();" />
 <script src="http://d3js.org/d3.v3.js"></script>
-<script src="jquery-1.10.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
+
 function loadGraph() {
     var name = document.getElementsByName("qb_name")[0].value;
-    var data; 
+    var children; 
     $.ajax({
+      'async': false, 
       'url': 'http://127.0.0.1:8000/get_qb_breakdown', 
       'type': 'GET', 
       'data': {
         'qb': name
       }, 
-      'success': function(response) {
-           data = {
+      'success': function(myData) {
+          children = $.parseJSON(myData); 
+      }
+
+    });
+    data = {
             "name": name, 
             "type": "quarterback",
-            "children": response
-        };
-      }
-    };
+            "children": children
+          };   
+    console.log(children); 
     drawGraph(data); 
 }
 
