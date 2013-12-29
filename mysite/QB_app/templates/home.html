@@ -21,11 +21,17 @@
 </style>
 
 <body>
-<input type="text" name="qb_name"><br>
+<input type="text" name="qb_name" onkeypress="keyPressListener(event)"><br>
 <input type="button" name="loadGraph" value="Load" onClick="loadGraph();" />
 <script src="http://d3js.org/d3.v3.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
+
+function keyPressListener(e) { 
+  if (e.keyCode == 13) {
+    loadGraph(); 
+  }
+}
 
 function loadGraph() {
     var name = document.getElementsByName("qb_name")[0].value;
@@ -116,7 +122,6 @@ node.append("text")
 
 d3.select(self.frameElement).style("height", height + "px");
 }
-
 
 
 
