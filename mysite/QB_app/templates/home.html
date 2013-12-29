@@ -27,10 +27,20 @@
 <script>
 function loadGraph() {
     var name = document.getElementsByName("qb_name")[0].value;
-    data = {
-        "name": name, 
-        "type": "quarterback",
-        "children": []
+    var data; 
+    $.ajax({
+      'url': 'http://127.0.0.1:8000/get_qb_breakdown', 
+      'type': 'GET', 
+      'data': {
+        'qb': name
+      }, 
+      'success': function(response) {
+           data = {
+            "name": name, 
+            "type": "quarterback",
+            "children": response
+        };
+      }
     };
     drawGraph(data); 
 }
