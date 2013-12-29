@@ -22,11 +22,12 @@ def home(request):
 def get_qb_breakdown(request):
 	qb_name = request.GET['qb']
 	conn = aws_connect()
+	qb_domain = conn.get_domain('qb_table')
 	query = 'select * from `qb_table` where quarterback="%s"' % qb_name
 	rs = qb_domain.select(query)
 
 	output = []
 	for attrs in rs: 
 		output.append(attrs)
-	final_output = json.dumps(output)
+	return HttpResponse(json.dumps(output))
 
