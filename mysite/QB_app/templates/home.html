@@ -21,12 +21,56 @@
 </style>
 
 <body>
-<input type="text" name="qb_name" onkeypress="keyPressListener(event)"><br>
+<input type="text" name="qb_name" id="qb_names" onkeypress="keyPressListener(event)"><br>
 <input type="button" name="loadGraph" value="Load" onClick="loadGraph();" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <script src="http://d3js.org/d3.v3.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script>
-
+$(function() {
+  var arr = [
+  "Carson Palmer", 
+  "Matt Ryan", 
+  "Joe Flacco", 
+  "Thad Lewis",  
+  "Cam Newton",  
+  "Jay Cutler", 
+  "Andy Dalton", 
+  "Jason Campbell",  
+  "Tony Romo",
+  "Peyton Manning",  
+  "Matthew Stafford", 
+  "Matt Flynn",
+  "Matt Schaub",  
+  "Andrew Luck", 
+  "Chad Henne",  
+  "Alex Smith",  
+  "Ryan Tannehil", 
+  "Matt Cassel",
+  "Tom Brady",  
+  "Drew Brees",  
+  "Eli Manning", 
+  "Geno Smith",
+  "Matt McGloin", 
+  "Nick Foles",
+  "Ben Roethlisberger",
+  "Philip Rivers",
+  "Colin Kaepernick", 
+  "Russell Wilson", 
+  "Kellen Clemens", 
+  "Mike Glennon", 
+  "Ryan Fitzpatrick", 
+  "Kirk Cousins", 
+  "Sam Bradford", 
+  "Aaron Rodgers", 
+  "Terelle Pryor", 
+  "Josh McCown"
+  ]; 
+  $( "#qb_names" ).autocomplete({
+    source: arr
+  });
+});
 function keyPressListener(e) { 
   if (e.keyCode == 13) {
     loadGraph(); 
