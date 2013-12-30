@@ -37,6 +37,7 @@ function loadGraph() {
     var name = document.getElementsByName("qb_name")[0].value;
     if (name == "") {
       alert("You must enter a quarterback's name!");
+      return; 
     }
     var children; 
     $.ajax({
