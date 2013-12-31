@@ -109,8 +109,7 @@ function loadGraph() {
 function drawGraph(data) {
 
 // remove any existing graphs from the page
-d3.selectAll('g')
-  .remove(); 
+d3.selectAll("svg").remove(); 
 
 var width = 500,
     height = 500;
@@ -126,12 +125,12 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
   .append("g")
-    .attr("transform", "translate(0,0)");
+    .attr("transform", "translate(100,0)");
 
 // draw the arrowhead
 svg.append("defs").append("marker")
     .attr("id", "arrowhead")
-    .attr("refX", 9) /*must be smarter way to calculate shift*/
+    .attr("refX", 9) 
     .attr("refY", 2)
     .attr("markerWidth", 6)
     .attr("markerHeight", 4)
