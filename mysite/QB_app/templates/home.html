@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+.center {
+  position: absolute;
+  bottom: 150px;
+  right: 25%;
+  left:50%;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+#footer{background-color:#1fa67a;border-top:1px solid #1b926c;color:#a5d8c7;text-shadow:0 1px 0 rgba(0,0,0,0.15)}#footer a{color:#d2ebe3;border-bottom:dotted 1px #a5d8c7}#footer a:hover{color:#fff;text-decoration:none;border-bottom:solid 1px #fff}
+#footer{
+  position:absolute;
+bottom:0px;
+left: 0px;
+right: 0px;}
+#footer .container{padding-top:40px}
+#footer .project{margin-top:10px}
+#footer{height:130px}
+
+
+.svg {
+  position: absolute;
+  right: 25%;
+  left: 45%;
+  margin-left: -150px;
+}
 
 .node circle {
   fill: #fff;
@@ -21,8 +47,16 @@
 </style>
 
 <body>
-<input type="text" name="qb_name" id="qb_names" onkeypress="keyPressListener(event)"><br>
-<input type="button" name="loadGraph" value="Load" onClick="loadGraph();" />
+<div class="center">
+<input type="text" style="margin-left: -40px" name="qb_name" id="qb_names" onkeypress="keyPressListener(event)"><br>
+<input type="button" name="loadGraph" value="Get QB Breakdown" onClick="loadGraph();" />
+</div>
+<div id="footer">
+  <div class="container text-center">
+     <p>Created by <a href="http://twitter.com/manosaie">Manosai Eerabathini</a> </p>
+     <p>If you notice any bugs or problems, please <a href="mailto:mano.eerabathini@gmail.com?subject=QB Breakdown!">shoot me an email.</a></p>
+      </div>
+</div>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css">
 <script src="http://d3js.org/d3.v3.js"></script>
@@ -112,7 +146,7 @@ function drawGraph(data) {
 d3.selectAll("svg").remove(); 
 
 var width = 500,
-    height = 500;
+    height = 450;
  
 
 var cluster = d3.layout.cluster()
