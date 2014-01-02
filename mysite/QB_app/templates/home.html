@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+
 .center {
   position: absolute;
-  bottom: 150px;
-  right: 25%;
-  left:50%;
+  bottom: 135px;
+  left:45%;
   margin-right: auto;
   margin-left: auto;
 
@@ -18,10 +18,10 @@ left: 0px;
 right: 0px;}
 #footer .container{padding-top:40px}
 #footer .project{margin-top:10px}
-#footer{height:130px}
+#footer{height:120px}
 
 
-.svg {
+svg {
   position: absolute;
   right: 25%;
   left: 45%;
@@ -44,12 +44,13 @@ right: 0px;}
   stroke-width: 1.5px;
 }
 
+
 </style>
 
 <body>
 <div class="center">
 <input type="text" style="margin-left: -40px" name="qb_name" id="qb_names" onkeypress="keyPressListener(event)"><br>
-<input type="button" name="loadGraph" value="Get QB Breakdown" onClick="loadGraph();" />
+<a href="#" onClick="javascript:loadGraph();" class="btn btn-success btn-large">Get QB Breakdown</a>
 </div>
 <div id="footer">
   <div class="container text-center">
