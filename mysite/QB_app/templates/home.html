@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<html>
+<head>
+  <title>NFL Quarterback Breakdown</title>
 <meta charset="utf-8">
 <style>
 
@@ -43,23 +46,22 @@ svg {
   stroke: #ccc;
   stroke-width: 1.5px;
 }
+h1 {
+  opacity:0.7;
+  filter:alpha(opacity=70);
+  color: white;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-size: 90px;
+  line-height: 100px;
+}
 
 
 </style>
 
-<body>
-<div class="center">
-<input type="text" style="margin-left: -40px" name="qb_name" id="qb_names" onkeypress="keyPressListener(event)"><br>
-<a href="#" onClick="javascript:loadGraph();" class="btn btn-success btn-large">Get QB Breakdown</a>
-</div>
-<div id="footer">
-  <div class="container text-center">
-     <p>Created by <a href="http://twitter.com/manosaie">Manosai Eerabathini</a> </p>
-     <p>If you notice any bugs or problems, please <a href="mailto:mano.eerabathini@gmail.com?subject=QB Breakdown!">shoot me an email.</a></p>
-      </div>
-</div>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css">
+<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
 <script src="http://d3js.org/d3.v3.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -114,6 +116,11 @@ function keyPressListener(e) {
 }
 
 function loadGraph() {
+    // remove landing page content 
+    var el = document.getElementById('landing');
+    el.parentNode.removeChild(el);
+
+    // check for empty input 
     var name = document.getElementsByName("qb_name")[0].value;
     if (name == "") {
       alert("You must enter a quarterback's name!");
@@ -211,6 +218,22 @@ d3.select(self.frameElement).style("height", height + "px");
 }
 
 </script>
+</head>
+<body>
+<div id="landing">
+<h1>QB Breakdown</h1>
+<p style="text-align:center">Enter a quarterback's name to see his touchdown passes broken down by receivers.</p>
+</div>
+<div class="center">
+  <input type="text" style="margin-left: -40px" name="qb_name" id="qb_names" onkeypress="keyPressListener(event)"><br>
+  <a href="#" onClick="javascript:loadGraph();" class="btn btn-success btn-large">Get QB Breakdown</a>
+</div>
+<div id="footer">
+  <div class="container text-center">
+     <p>Created by <a href="http://twitter.com/manosaie">Manosai Eerabathini</a> </p>
+     <p>If you notice any bugs or problems, please <a href="mailto:mano.eerabathini@gmail.com?subject=QB Breakdown!">shoot me an email.</a></p>
+  </div>
+</div>
 </body>
 </html>
 
