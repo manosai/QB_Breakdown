@@ -1,7 +1,7 @@
 
 .center {
   position: absolute;
-  bottom: 135px;
+  bottom: 125px;
   left:45%;
   margin-right: auto;
   margin-left: auto;
@@ -15,7 +15,7 @@ left: 0px;
 right: 0px;}
 #footer .container{padding-top:40px}
 #footer .project{margin-top:10px}
-#footer{height:120px}
+#footer{height:110px}
 
 
 svg {

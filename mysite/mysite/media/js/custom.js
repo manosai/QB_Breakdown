@@ -35,7 +35,8 @@ $(function() {
   "Sam Bradford", 
   "Aaron Rodgers", 
   "Terelle Pryor", 
-  "Josh McCown"
+  "Josh McCown", 
+  "Robert Griffin"
   ]; 
   $( "#qb_names" ).autocomplete({
     source: arr
@@ -103,7 +104,7 @@ function drawGraph(data) {
 d3.selectAll("svg").remove(); 
 
 
-var width = 500,
+var width = 530,
     height = getDocHeight() / 1.4;
  
 
@@ -117,7 +118,7 @@ var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height)
   .append("g")
-    .attr("transform", "translate(100,0)");
+    .attr("transform", "translate(110,0)");
 
 // draw the arrowhead
 svg.append("defs").append("marker")
