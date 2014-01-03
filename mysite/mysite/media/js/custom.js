@@ -78,7 +78,6 @@ function loadGraph() {
             "type": "quarterback",
             "children": children
           };   
-    console.log(children); 
     drawGraph(data); 
 }
 function getDocHeight() {
@@ -89,6 +88,7 @@ function getDocHeight() {
         D.body.clientHeight, D.documentElement.clientHeight
     );
 }
+
 
 function drawGraph(data) {
 
