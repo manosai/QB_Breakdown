@@ -22,7 +22,7 @@ def home(request):
 def get_qb_breakdown(request):
 	qb_name = request.GET['qb']
 	conn = aws_connect()
-	qb_domain = conn.get_domain('qb_table')
+	qb_domain = conn.get_domain('qb_table_2013')
 	query = 'select * from `qb_table_2013` where quarterback="%s"' % qb_name
 	rs = qb_domain.select(query)
 
