@@ -126,12 +126,12 @@ svg.append("defs").append("marker")
 var nodes = cluster.nodes(data);
 var links = cluster.links(nodes);
 
-var link = svg.selectAll(".link")
+var path = svg.append("g").selectAll("path")
   .data(links)
-.enter().append("path")
-  .attr("class", "link")
-  .attr("marker-end", "url(#arrowhead)")
-  .attr("d", diagonal);
+  .enter().append("path") 
+    .attr("class", function(d) {return ("link"+d.target.star);})
+    .attr("marker-end", "url(#arrowhead)")
+    .attr("d", diagonal);
 
 var node = svg.selectAll(".node")
   .data(nodes)
@@ -151,7 +151,7 @@ node.append("text")
 
 node.append("text")
   .attr("dx", function(d) { return d.children ? -8 : 8; })
-  .attr("dy", function(d) { return d.children ? -5: 15; })
+  .attr("dy", function(d) { return d.children ? -5: 25; })
   .text(function(d) { 
   			if (d.type == 'receiver') {
   				return "TDs: " + d.touchdowns; 

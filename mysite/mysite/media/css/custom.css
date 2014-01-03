@@ -27,19 +27,27 @@ svg {
 
 .node circle {
   fill: #fff;
-  stroke: steelblue;
+  stroke: #1fa67a;
   stroke-width: 1.5px;
 }
 
 .node {
-  font: 10px sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
-.link {
+
+.linkfalse {
   fill: none;
   stroke: #ccc;
   stroke-width: 2px;
 }
+
+.linktrue {
+  fill: none;
+  stroke: #FDD017;
+  stroke-width: 2px;
+}
+
 h1 {
   text-align: center;
   font-family: 'Oswald', sans-serif;
