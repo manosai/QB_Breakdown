@@ -90,7 +90,14 @@ function getDocHeight() {
 }
 
 
+
+
 function drawGraph(data) {
+  // check to see if legend has been added
+  var el = document.getElementById('legend');
+  if (el == null) {
+    $('body').append('<div id="legend"><h3>QB Breakdown<h3><h4><span style="color:#FDD017">Gold-colored edges denote favorite endzone targets</span><br><span style="color:#ccc">Gray-colored edges denote all other endzone targets </span><h4><div>');
+  } 
 
 // remove any existing graphs from the page
 d3.selectAll("svg").remove(); 
