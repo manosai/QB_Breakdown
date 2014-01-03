@@ -3,221 +3,16 @@
 <head>
   <title>NFL Quarterback Breakdown</title>
 <meta charset="utf-8">
-<style>
-
-.center {
-  position: absolute;
-  bottom: 135px;
-  left:45%;
-  margin-right: auto;
-  margin-left: auto;
-
-}
-#footer{background-color:#1fa67a;border-top:1px solid #1b926c;color:#a5d8c7;text-shadow:0 1px 0 rgba(0,0,0,0.15)}#footer a{color:#d2ebe3;border-bottom:dotted 1px #a5d8c7}#footer a:hover{color:#fff;text-decoration:none;border-bottom:solid 1px #fff}
-#footer{
-  position:absolute;
-bottom:0px;
-left: 0px;
-right: 0px;}
-#footer .container{padding-top:40px}
-#footer .project{margin-top:10px}
-#footer{height:120px}
-
-
-svg {
-  position: absolute;
-  right: 25%;
-  left: 45%;
-  margin-left: -150px;
-}
-
-.node circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-.node {
-  font: 10px sans-serif;
-}
-
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 1.5px;
-}
-h1 {
-  opacity:0.7;
-  filter:alpha(opacity=70);
-  color: white;
-  text-align: center;
-  font-family: 'Oswald', sans-serif;
-  font-size: 90px;
-  line-height: 100px;
-}
-
-
-</style>
-
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css">
+<link href="/media/css/bootstrap.min.css" rel="stylesheet">
+<link href="/media/css/custom.css" rel="stylesheet">
 <link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic' rel='stylesheet' type='text/css'>
+
 <script src="http://d3js.org/d3.v3.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script>
-$(function() {
-  var arr = [
-  "Carson Palmer", 
-  "Matt Ryan", 
-  "Joe Flacco", 
-  "Thad Lewis",  
-  "Cam Newton",  
-  "Jay Cutler", 
-  "Andy Dalton", 
-  "Jason Campbell",  
-  "Tony Romo",
-  "Peyton Manning",  
-  "Matthew Stafford", 
-  "Matt Flynn",
-  "Matt Schaub",  
-  "Andrew Luck", 
-  "Chad Henne",  
-  "Alex Smith",  
-  "Ryan Tannehil", 
-  "Matt Cassel",
-  "Tom Brady",  
-  "Drew Brees",  
-  "Eli Manning", 
-  "Geno Smith",
-  "Matt McGloin", 
-  "Nick Foles",
-  "Ben Roethlisberger",
-  "Philip Rivers",
-  "Colin Kaepernick", 
-  "Russell Wilson", 
-  "Kellen Clemens", 
-  "Mike Glennon", 
-  "Ryan Fitzpatrick", 
-  "Kirk Cousins", 
-  "Sam Bradford", 
-  "Aaron Rodgers", 
-  "Terelle Pryor", 
-  "Josh McCown"
-  ]; 
-  $( "#qb_names" ).autocomplete({
-    source: arr
-  });
-});
-function keyPressListener(e) { 
-  if (e.keyCode == 13) {
-    loadGraph(); 
-  }
-}
-
-function loadGraph() {
-    // remove landing page content 
-    var el = document.getElementById('landing');
-    el.parentNode.removeChild(el);
-
-    // check for empty input 
-    var name = document.getElementsByName("qb_name")[0].value;
-    if (name == "") {
-      alert("You must enter a quarterback's name!");
-      return; 
-    }
-    var children; 
-    $.ajax({
-      'async': false, 
-      'url': 'http://127.0.0.1:8000/get_qb_breakdown', 
-      'type': 'GET', 
-      'data': {
-        'qb': name
-      }, 
-      'success': function(myData) {
-          children = $.parseJSON(myData); 
-      }
-
-    });
-    data = {
-            "name": name, 
-            "type": "quarterback",
-            "children": children
-          };   
-    console.log(children); 
-    drawGraph(data); 
-}
-
-function drawGraph(data) {
-
-// remove any existing graphs from the page
-d3.selectAll("svg").remove(); 
-
-var width = 500,
-    height = 450;
- 
-
-var cluster = d3.layout.cluster()
-    .size([height, width - 220]);
-
-var diagonal = d3.svg.diagonal()
-    .projection(function(d) { return [d.y, d.x]; });
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
-  .append("g")
-    .attr("transform", "translate(100,0)");
-
-// draw the arrowhead
-svg.append("defs").append("marker")
-    .attr("id", "arrowhead")
-    .attr("refX", 9) 
-    .attr("refY", 2)
-    .attr("markerWidth", 6)
-    .attr("markerHeight", 4)
-    .attr("orient", "auto")
-    .append("path")
-        .attr("d", "M 0,0 V 4 L6,2 Z");
-
-var nodes = cluster.nodes(data);
-var links = cluster.links(nodes);
-
-var link = svg.selectAll(".link")
-  .data(links)
-.enter().append("path")
-  .attr("class", "link")
-  .attr("marker-end", "url(#arrowhead)")
-  .attr("d", diagonal);
-
-var node = svg.selectAll(".node")
-  .data(nodes)
-    .enter().append("g")
-        .attr("class", "node")
-        .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
-
-node.append("circle")
-        .attr("r", 4.5);
-
-node.append("text")
-  .attr("dx", function(d) { return d.children ? -8 : 8; })
-  .attr("dy", function(d) { return d.children ? -5 : 3; })
-  .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-  .text(function(d) { return d.name; });
- 
-
-node.append("text")
-  .attr("dx", function(d) { return d.children ? -8 : 8; })
-  .attr("dy", function(d) { return d.children ? -5: 15; })
-  .text(function(d) { 
-  			if (d.type == 'receiver') {
-  				return "TDs: " + d.touchdowns; 
-  			}
-  });
-d3.select(self.frameElement).style("height", height + "px");
-}
-
-</script>
+<script src="/media/js/custom.js"></script>
 </head>
 <body>
 <div id="landing">
@@ -226,7 +21,7 @@ d3.select(self.frameElement).style("height", height + "px");
 </div>
 <div class="center">
   <input type="text" style="margin-left: -40px" name="qb_name" id="qb_names" onkeypress="keyPressListener(event)"><br>
-  <a href="#" onClick="javascript:loadGraph();" class="btn btn-success btn-large">Get QB Breakdown</a>
+  <a href="#" onClick="javascript:loadGraph();" class="btn btn-success btn-large" style="margin-left: -30px">Get QB Breakdown</a>
 </div>
 <div id="footer">
   <div class="container text-center">
