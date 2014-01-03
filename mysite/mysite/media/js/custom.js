@@ -104,7 +104,7 @@ d3.selectAll("svg").remove();
 
 
 var width = 500,
-    height = getDocHeight() / 1.5;
+    height = getDocHeight() / 1.4;
  
 
 var cluster = d3.layout.cluster()
