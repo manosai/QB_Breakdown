@@ -36,7 +36,10 @@ $(function() {
   "Aaron Rodgers", 
   "Terelle Pryor", 
   "Josh McCown", 
-  "Robert Griffin"
+  "Robert Griffin", 
+  "Christian Ponder", 
+  "Josh Freeman", 
+  "Kyle Orton"
   ]; 
   $( "#qb_names" ).autocomplete({
     source: arr
@@ -71,6 +74,10 @@ function loadGraph() {
       }, 
       'success': function(myData) {
           children = $.parseJSON(myData); 
+          if ($.isEmptyObject(children)) {
+            alert("It seems there's no passing TD information about this quarterback! Please send me an email at mano.eerabathini@gmail.com");
+            return; 
+          }
       }
 
     });
