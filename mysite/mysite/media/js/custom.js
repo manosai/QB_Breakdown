@@ -67,7 +67,7 @@ function loadGraph() {
     var children; 
     $.ajax({
       'async': false, 
-      'url': 'http://127.0.0.1:8000/get_qb_breakdown', 
+      'url': 'http://qb-breakdown/get_qb_breakdown', 
       'type': 'GET', 
       'data': {
         'qb': name
@@ -112,7 +112,7 @@ d3.selectAll("svg").remove();
 
 
 var width = 530,
-    height = getDocHeight() / 1.4;
+    height = 450;
  
 
 var cluster = d3.layout.cluster()
@@ -166,7 +166,7 @@ node.append("text")
 
 node.append("text")
   .attr("dx", function(d) { return d.children ? -8 : 8; })
-  .attr("dy", function(d) { return d.children ? -5: 25; })
+  .attr("dy", function(d) { return d.children ? -5: 20; })
   .text(function(d) { 
   			if (d.type == 'receiver') {
   				return "TDs: " + d.touchdowns; 
