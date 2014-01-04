@@ -67,7 +67,7 @@ function loadGraph() {
     var children; 
     $.ajax({
       'async': false, 
-      'url': 'http://qb-breakdown/get_qb_breakdown', 
+      'url': 'http://ec2-54-197-246-254.compute-1.amazonaws.com/get_qb_breakdown', 
       'type': 'GET', 
       'data': {
         'qb': name
