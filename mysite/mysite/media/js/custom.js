@@ -116,7 +116,7 @@ var width = 550,
  
 
 var cluster = d3.layout.cluster()
-    .size([height, width - 220]);
+    .size([height, width - 250]);
 
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
@@ -158,7 +158,7 @@ node.append("circle")
         .attr("r", 4.5);
 
 node.append("text")
-  .attr("dx", function(d) { return d.children ? -8 : 9; })
+  .attr("dx", function(d) { return d.children ? -8 : 8; })
   .attr("dy", function(d) { return d.children ? -5 : 3; })
   .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
   .text(function(d) { return d.name; });
