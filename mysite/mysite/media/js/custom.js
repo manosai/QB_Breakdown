@@ -67,7 +67,7 @@ function loadGraph() {
     var children; 
     $.ajax({
       'async': false, 
-      'url': 'http://qb-breakdown.com/get_qb_breakdown', 
+      'url': '/get_qb_breakdown', 
       'type': 'GET', 
       'data': {
         'qb': name
@@ -158,7 +158,7 @@ node.append("circle")
         .attr("r", 4.5);
 
 node.append("text")
-  .attr("dx", function(d) { return d.children ? -8 : 15; })
+  .attr("dx", function(d) { return d.children ? -8 : 9; })
   .attr("dy", function(d) { return d.children ? -5 : 3; })
   .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
   .text(function(d) { return d.name; });
