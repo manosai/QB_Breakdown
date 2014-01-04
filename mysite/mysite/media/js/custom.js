@@ -111,7 +111,7 @@ function drawGraph(data) {
 d3.selectAll("svg").remove(); 
 
 
-var width = 530,
+var width = 550,
     height = 450;
  
 
