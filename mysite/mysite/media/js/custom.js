@@ -51,6 +51,11 @@ function keyPressListener(e) {
   }
 }
 
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 function loadGraph() {
     // remove landing page content 
     var el = document.getElementById('landing');
@@ -60,6 +65,7 @@ function loadGraph() {
 
     // check for empty input 
     var name = document.getElementsByName("qb_name")[0].value;
+    name = toTitleCase(name);
     if (name == "") {
       alert("You must enter a quarterback's name!");
       return; 
